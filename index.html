@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ambuj - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+    />
+    <link rel="icon" type="image/png" href="https://via.placeholder.com/32" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        min-height: 100vh;
+        color: #1f2937;
+        line-height: 1.7;
+        transition: background 0.4s ease, color 0.4s ease;
+      }
+
+      body.dark-mode {
+        background: linear-gradient(135deg, #111827 0%, #374151 100%);
+        color: #e5e7eb;
+      }
+
+      header {
+        background: linear-gradient(to right, #1e40af, #3b82f6);
+        color: #ffffff;
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body.dark-mode header {
+        background: linear-gradient(to right, #1e1b4b, #1e40af);
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        opacity: 0.3;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+
+      header p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 2px solid #ffffff;
+        width: 0;
+        animation: typing 4s steps(40, end) forwards,
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #ffffff;
+        }
+      }
+
+      main {
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 2.5rem 1rem;
+      }
+
+      section {
+        background: #ffffff;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeIn 0.6s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body.dark-mode section {
+        background: #374151;
+      }
+
+      section:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e40af;
+        margin-bottom: 1.25rem;
+        border-bottom: 2px solid #bfdbfe;
+        padding-bottom: 0.5rem;
+      }
+
+      body.dark-mode h2 {
+        color: #60a5fa;
+        border-bottom-color: #4b6cb7;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.75rem;
+      }
+
+      body.dark-mode h3 {
+        color: #d1d5db;
+      }
+
+      p {
+        color: #4b5563;
+        margin-bottom: 1rem;
+      }
+
+      body.dark-mode p {
+        color: #d1d5db;
+      }
+
+      .skills-interests {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+
+      .skill-item {
+        background: #f3f4f6;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        transition: background 0.4s ease, transform 0.3s ease;
+      }
+
+      body.dark-mode .skill-item {
+        background: #4b5563;
+      }
+
+      .skill-item:hover {
+        background: #bfdbfe;
+        transform: scale(1.05);
+      }
+
+      body.dark-mode .skill-item:hover {
+        background: #60a5fa;
+      }
+
+      ul {
+        padding-left: 1.5rem;
+        color: #4b5563;
+      }
+
+      body.dark-mode ul {
+        color: #d1d5db;
+      }
+
+      ul li {
+        margin-bottom: 0.75rem;
+      }
+
+      .project {
+        margin-bottom: 1.5rem;
+      }
+
+      a {
+        color: #1e40af;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      body.dark-mode a {
+        color: #60a5fa;
+      }
+
+      a:hover {
+        color: #3b82f6;
+        text-decoration: underline;
+      }
+
+      body.dark-mode a:hover {
+        color: #93c5fd;
+      }
+
+      .toggle-button {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: #1e40af;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.3s ease;
+        z-index: 1000;
+      }
+
+      .toggle-button:hover {
+        background: #3b82f6;
+      }
+
+      body.dark-mode .toggle-button {
+        background: #60a5fa;
+      }
+
+      body.dark-mode .toggle-button:hover {
+        background: #93c5fd;
+      }
+
+      .scroll-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: #1e40af;
+        color: #ffffff;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease,
+          background 0.3s ease;
+        z-index: 1000;
+      }
+
+      .scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-top:hover {
+        background: #3b82f6;
+      }
+
+      body.dark-mode .scroll-top {
+        background: #60a5fa;
+      }
+
+      body.dark-mode .scroll-top:hover {
+        background: #93c5fd;
+      }
+
+      .resume-button {
+        display: inline-block;
+        background: #1e40af;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s ease, transform 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .resume-button:hover {
+        background: #3b82f6;
+        transform: scale(1.05);
+      }
+
+      body.dark-mode .resume-button {
+        background: #3b82f6;
+        color: #ffffff;
+      }
+
+      body.dark-mode .resume-button:hover {
+        background: #60a5fa;
+        color: #1e3a8a;
+      }
+
+      footer {
+        background: #1f2937;
+        color: #ffffff;
+        text-align: center;
+        padding: 1.5rem 0;
+        font-size: 0.95rem;
+        margin-top: 2rem;
+        transition: background 0.4s ease;
+      }
+
+      body.dark-mode footer {
+        background: #111827;
+      }
+
+      @media (min-width: 768px) {
+        header h1 {
+          font-size: 3.5rem;
+        }
+
+        header p {
+          font-size: 1.75rem;
+        }
+
+        .skills-interests {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        h2 {
+          font-size: 2.25rem;
+        }
+
+        h3 {
+          font-size: 1.75rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        main {
+          padding: 3rem 2rem;
+        }
+
+        section {
+          padding: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle-button" onclick="toggleDarkMode()">
+      Toggle Dark Mode
+    </button>
+    <div class="scroll-top" onclick="scrollToTop()">↑</div>
+
+    <header>
+      <h1>Ambuj</h1>
+      <p>Web Development Enthusiast & Problem Solver</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>About Me</h2>
+        <p>
+          Hello! I'm Ambuj, an aspiring web developer with a passion for
+          creating intuitive and visually appealing websites...
+        </p>
+      </section>
+
+      <section>
+        <h2>Skills & Interests</h2>
+        <div class="skills-interests">
+          <div>
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+              <div class="skill-item">HTML5</div>
+              <div class="skill-item">CSS3</div>
+              <div class="skill-item">JavaScript (ES6+)</div>
+              <div class="skill-item">Responsive Design</div>
+              <div class="skill-item">Git & GitHub</div>
+              <div class="skill-item">Web Accessibility</div>
+            </div>
+          </div>
+          <div>
+            <h3>Interests</h3>
+            <ul>
+              <li>Web Design & Aesthetics</li>
+              <li>Open Source Contribution</li>
+              <li>UI/UX Development</li>
+              <li>Front-End Frameworks (React, Vue)</li>
+              <li>Web Performance Optimization</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="project">
+          <h3>Personal Portfolio Website</h3>
+          <p>Responsive portfolio site with modern features...</p>
+        </div>
+        <div class="project">
+          <h3>Todo List App</h3>
+          <p>Task management app using JavaScript and local storage...</p>
+        </div>
+        <div class="project">
+          <h3>Weather Dashboard</h3>
+          <p>Real-time weather info via public API...</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:ambuj@example.com">ambuj@example.com</a></p>
+        <p>
+          LinkedIn:
+          <a href="https://linkedin.com/in/ambuj" target="_blank"
+            >linkedin.com/in/ambuj</a
+          ><br />
+          GitHub:
+          <a href="https://github.com/ambuj" target="_blank"
+            >github.com/ambuj</a
+          >
+        </p>
+        <a
+          href="https://via.placeholder.com/resume.pdf"
+          class="resume-button"
+          target="_blank"
+          >Download Resume</a
+        >
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Ambuj. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "darkMode",
+          document.body.classList.contains("dark-mode")
+        );
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("darkMode") === "true") {
+          document.body.classList.add("dark-mode");
+        }
+      });
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      window.addEventListener("scroll", () => {
+        const scrollButton = document.querySelector(".scroll-top");
+        if (window.scrollY > 300) {
+          scrollButton.classList.add("visible");
+        } else {
+          scrollButton.classList.remove("visible");
+        }
+      });
+    </script>
+  </body>
+</html>
